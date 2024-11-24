@@ -1,0 +1,3 @@
+enum GameStatus {
+    MENU,GAME_START, GAME_PLAYING, INFO, SCORE
+}

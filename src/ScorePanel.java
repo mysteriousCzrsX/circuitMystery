@@ -2,15 +2,21 @@ import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.JTable;
+import javax.swing.SwingUtilities;
+
 
 public class ScorePanel extends JPanel {
     JButton backButton = new JButton("Back");
-    JTextArea scoreArea = new JTextArea();
+    JTable scoreArea = new JTable();
     ScorePanel(Vector<Integer> scores) {
         super();
         add(backButton);
-        
+        backButton.addActionListener(e -> {
+            MysteryWindow window = (MysteryWindow) SwingUtilities.getWindowAncestor(ScorePanel.this);
+            window.state = GameStatus.MENU;
+        });
+
         add(scoreArea);
     }
     

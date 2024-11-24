@@ -15,11 +15,25 @@ public class MenuPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MysteryWindow window = (MysteryWindow) SwingUtilities.getWindowAncestor(MenuPanel.this);
-                window.startGame();
+                window.state = GameStatus.GAME_START;
             }
         });
         add(scoreButton);
+        scoreButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MysteryWindow window = (MysteryWindow) SwingUtilities.getWindowAncestor(MenuPanel.this);
+                window.state = GameStatus.SCORE;
+            }
+        });
         add(infoButton);
+        infoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MysteryWindow window = (MysteryWindow) SwingUtilities.getWindowAncestor(MenuPanel.this);
+                window.state = GameStatus.INFO;
+            }
+        });
         add(QuitButton);
         QuitButton.addActionListener(new ActionListener() {
             @Override

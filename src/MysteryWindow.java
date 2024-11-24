@@ -10,7 +10,9 @@ public class MysteryWindow extends JFrame {
     CardLayout cardLayout = new CardLayout();
     JPanel cardPanel = new JPanel(cardLayout);
     Vector<Integer> scores = new Vector<Integer>();
-    JPanel scoreboard = new ScorePanel();
+    JPanel scoreboard = new ScorePanel(scores);
+    JPanel info = new InfoPanel();
+    GameStatus state = GameStatus.MENU;
     
     
     public MysteryWindow(int width, int height) {
@@ -22,6 +24,8 @@ public class MysteryWindow extends JFrame {
 
         cardPanel.add(menu, "menu");
         cardPanel.add(game, "game");
+        cardPanel.add(scoreboard, "score");
+        cardPanel.add(info, "info");
         add(cardPanel, BorderLayout.CENTER);
     }
 
@@ -30,6 +34,21 @@ public class MysteryWindow extends JFrame {
     }
 
     public void spin(){
-
+        while (true) {
+            switch (state) {
+                case MENU:
+                    cardLayout.show(cardPanel, "menu");
+                    break;
+                case GAME_START:
+                    startGame();
+                    break;
+                case SCORE:
+                    cardLayout.show(cardPanel, "score");
+                    break;
+                case INFO:
+                    cardLayout.show(cardPanel, "info");
+                    break;
+            }
+        }
     }
 }
