@@ -49,6 +49,10 @@ public class MysteryWindow extends JFrame {
                 case GAME_CHECK:
                     //check if solved correctly and if game finished
                     break;
+                case GAME_ABORTED:
+                    //cleanup
+                    state = GameStatus.MENU;
+                    break;
                 case GAME_FINISHED:
                     //show score
                     break;
