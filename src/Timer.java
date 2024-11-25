@@ -16,9 +16,7 @@ public class Timer {
 
     Runnable measureTime = () -> {
         timeSoFar = System.nanoTime() - startTime;
-        //
         if (isRunning){
-            System.out.println("Elapsed time in milliseconds: " + timeSoFar / 1_000_000);
             updateTimeDisplay.accept(timeSoFar);
         }
 
