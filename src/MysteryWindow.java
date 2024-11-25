@@ -13,6 +13,8 @@ public class MysteryWindow extends JFrame {
     JPanel scoreboard = new ScorePanel(scores);
     JPanel info = new InfoPanel();
     GameStatus state = GameStatus.MENU;
+    Timer timer = new Timer(game::updateTimeDisplay);
+
     
     
     public MysteryWindow(int width, int height) {
@@ -29,9 +31,16 @@ public class MysteryWindow extends JFrame {
         add(cardPanel, BorderLayout.CENTER);
     }
 
-    public void startGame() {
+    private void startGame() {
         cardLayout.show(cardPanel, "game");
         state = GameStatus.GAME_PLAYING;
+        timer.startTimer();
+    }
+
+    private void finishGame() {
+        long time = timer.stopTimer();
+        game.updateTimeDisplay(0);
+        scores.add((int) time);
     }
 
     public void spin(){
@@ -50,10 +59,13 @@ public class MysteryWindow extends JFrame {
                     //check if solved correctly and if game finished
                     break;
                 case GAME_ABORTED:
-                    //cleanup
+                    timer.stopTimer();
+                    game.updateTimeDisplay(0);
                     state = GameStatus.MENU;
+                    //cleanup
                     break;
                 case GAME_FINISHED:
+                    finishGame();
                     //show score
                     break;
                 case SCORE:

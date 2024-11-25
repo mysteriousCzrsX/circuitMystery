@@ -1,28 +1,40 @@
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.function.LongConsumer;
 
 public class Timer {
-    private long startTime;
-    private long timeSoFar;
+    private long startTime = 0;
+    private long timeSoFar = 0;
+    private LongConsumer updateTimeDisplay;
     private ScheduledExecutorService exec= Executors.newScheduledThreadPool(1);
-    Timer() {
-         //get some container to update
+    boolean isRunning = false;
+    Timer(LongConsumer timeOutCallback){
+        updateTimeDisplay = timeOutCallback;
+        exec.scheduleAtFixedRate(measureTime, 0, 1, TimeUnit.SECONDS);
     }
 
     Runnable measureTime = () -> {
         timeSoFar = System.nanoTime() - startTime;
-        //update some container
+        //
+        if (isRunning){
+            System.out.println("Elapsed time in milliseconds: " + timeSoFar / 1_000_000);
+            updateTimeDisplay.accept(timeSoFar);
+        }
+
     };
 
     public void startTimer(){
         startTime = System.nanoTime();
-        exec.scheduleAtFixedRate(measureTime, 0, 1, TimeUnit.SECONDS);
+        isRunning = true;
     }
 
     public long stopTimer(){
-        exec.shutdown();
-        return timeSoFar;
+        long timeSoFarTemp = timeSoFar;
+        timeSoFar = 0;
+        startTime = 0;
+        isRunning = false;
+        return timeSoFarTemp;
     }
     
 }
