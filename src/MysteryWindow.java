@@ -31,6 +31,7 @@ public class MysteryWindow extends JFrame {
 
     public void startGame() {
         cardLayout.show(cardPanel, "game");
+        state = GameStatus.GAME_PLAYING;
     }
 
     public void spin(){
@@ -41,6 +42,15 @@ public class MysteryWindow extends JFrame {
                     break;
                 case GAME_START:
                     startGame();
+                    break;
+                case GAME_PLAYING:
+                    // measure time and idk xd
+                    break;
+                case GAME_CHECK:
+                    //check if solved correctly and if game finished
+                    break;
+                case GAME_FINISHED:
+                    //show score
                     break;
                 case SCORE:
                     cardLayout.show(cardPanel, "score");
