@@ -1,15 +1,22 @@
-import javax.swing.JButton;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.*;
 
 public class MenuPanel extends JPanel {
-    JButton startButton = new JButton("Start game");
-    JButton scoreButton = new JButton("Scoreboard");
-    JButton infoButton = new JButton("Game info");
-    JButton QuitButton = new JButton("Quit game");
+    private JButton startButton = new JButton("Start game");
+    private JButton scoreButton = new JButton("Scoreboard");
+    private JButton infoButton = new JButton("Game info");
+    private JButton quitButton = new JButton("Quit game");
+    
     MenuPanel() {
         super();
+        BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
+        setAlignmentX(Component.CENTER_ALIGNMENT);
+        setLayout(boxLayout);
+        add(Box.createRigidArea(new Dimension(0,100)));
+
+        startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(startButton);
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -18,6 +25,9 @@ public class MenuPanel extends JPanel {
                 window.state = GameStatus.GAME_START;
             }
         });
+        add(Box.createRigidArea(new Dimension(0,10)));
+        
+        scoreButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(scoreButton);
         scoreButton.addActionListener(new ActionListener() {
             @Override
@@ -26,6 +36,9 @@ public class MenuPanel extends JPanel {
                 window.state = GameStatus.SCORE;
             }
         });
+        add(Box.createRigidArea(new Dimension(0,10)));
+
+        infoButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(infoButton);
         infoButton.addActionListener(new ActionListener() {
             @Override
@@ -34,8 +47,11 @@ public class MenuPanel extends JPanel {
                 window.state = GameStatus.INFO;
             }
         });
-        add(QuitButton);
-        QuitButton.addActionListener(new ActionListener() {
+        add(Box.createRigidArea(new Dimension(0,10)));
+
+        quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(quitButton);
+        quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);

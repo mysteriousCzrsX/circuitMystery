@@ -8,7 +8,7 @@ public class GamePanel extends JPanel {
     JButton endButton = new JButton("End game");
     JButton doneButton = new JButton("Done");
     JTextField timerArea = new JTextField();
-
+    
     GamePanel() {
         super();
         add(endButton);
