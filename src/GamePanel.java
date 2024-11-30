@@ -76,20 +76,22 @@ public class GamePanel extends JPanel {
 
     public void checkIfSolved(){
         MysteryWindow rootWindow  = (MysteryWindow) SwingUtilities.getWindowAncestor(GamePanel.this);
-        if(true){
+        if(circuit[currentCircuit].isSolved()){
             remove(circuit[currentCircuit]);
             currentCircuit++;
             if(currentCircuit == 5){
                 rootWindow.state = GameStatus.GAME_FINISHED;
+                revalidate();
+                repaint();
+                return;
             }
             else{
                 add(circuit[currentCircuit]);
                 revalidate();
                 repaint();
                 circuit[currentCircuit].addCircuitImage();
-                rootWindow.state = GameStatus.GAME_PLAYING;
-                
             }
         }
+        rootWindow.state = GameStatus.GAME_PLAYING;
     }
 }

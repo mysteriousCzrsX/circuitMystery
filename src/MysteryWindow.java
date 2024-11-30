@@ -10,7 +10,7 @@ public class MysteryWindow extends JFrame {
     CardLayout cardLayout = new CardLayout();
     JPanel cardPanel = new JPanel(cardLayout);
     Vector<Long> scores = new Vector<Long>();
-    JPanel scoreboard = new ScorePanel(scores); //TODO should this be passed ?
+    JPanel scoreboard = new ScorePanel(); //TODO should this be passed ?
     JPanel info = new InfoPanel();
     GameStatus state = GameStatus.MENU;
     Timer timer = new Timer(game::updateTimeDisplay);
@@ -58,7 +58,6 @@ public class MysteryWindow extends JFrame {
                     break;
                 case GAME_CHECK:
                     game.checkIfSolved();
-                    //check if solved correctly and if game finished
                     break;
                 case GAME_ABORTED:
                     timer.stopTimer();

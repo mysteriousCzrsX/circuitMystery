@@ -12,7 +12,10 @@ abstract class Circuit extends JPanel {
     protected double [] resistorValues;
     protected int noResistors;
     protected ValueText [] resistorTexts;
-    protected int missingResistorIndex;
+
+    protected int [] resistorVoltages;
+    protected int missingResistorVoltageIndex;
+    protected ValueText [] resistorVoltageTexts;
 
     protected double [] voltageSourceValues;
     protected ValueText [] voltageSourceTexts;
@@ -28,6 +31,8 @@ abstract class Circuit extends JPanel {
         add(circuitBackground);
         circuitBackground.set(backgroundPath);
     }
+
+    public abstract boolean isSolved();
 
     protected void randomizeComponentValues(){
         int randomValue = 0;
@@ -48,20 +53,32 @@ abstract class Circuit extends JPanel {
     protected void setupTextFields(){
         resistorTexts = new ValueText[noResistors];
         voltageSourceTexts = new ValueText[noVoltageSources];
-        for (int i = 0; i < noResistors; i++){
-            if (i == missingResistorIndex){
-                resistorTexts[i] = new ValueText("R", i, "???", true);
-            }
-            else{
-                resistorTexts[i] = new ValueText("R", i, String.valueOf(resistorValues[i]), false);
-            }
-            add(resistorTexts[i]);
-        }
+        resistorVoltageTexts = new ValueText[noResistors];
+
         for (int i = 0; i < noVoltageSources; i++){
-            voltageSourceTexts[i] = new ValueText("E", i, String.valueOf(voltageSourceValues[i]), false);
+            voltageSourceTexts[i] = new ValueText("E", String.valueOf(i), String.valueOf(voltageSourceValues[i]), false);
             add(voltageSourceTexts[i]);
         }
+
+        for (int i = 0; i < noResistors; i++){
+            resistorTexts[i] = new ValueText("R", String.valueOf(i), String.valueOf(resistorValues[i]), false);
+            add(resistorTexts[i]);
+        }
+
+        String suffix = "_R%d"; 
+        for(int i = 0; i < noResistors; i++){
+            if(i == missingResistorVoltageIndex){
+                resistorVoltageTexts[i] = new ValueText("V", String.format(suffix, i), "???", true);
+                add(resistorVoltageTexts[i]);
+            }
+        }
+
+
+
+
+
+        
     }
 
-    public abstract boolean isSolved();
+    
 }

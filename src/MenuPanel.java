@@ -15,7 +15,7 @@ public class MenuPanel extends JPanel {
         setAlignmentX(Component.CENTER_ALIGNMENT);
         setLayout(boxLayout);
         add(Box.createRigidArea(new Dimension(0,100)));
-
+        
         startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(startButton);
         startButton.addActionListener(new ActionListener() {
