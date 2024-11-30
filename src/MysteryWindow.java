@@ -9,8 +9,8 @@ public class MysteryWindow extends JFrame {
     GamePanel game = new GamePanel();
     CardLayout cardLayout = new CardLayout();
     JPanel cardPanel = new JPanel(cardLayout);
-    Vector<Integer> scores = new Vector<Integer>();
-    JPanel scoreboard = new ScorePanel(scores);
+    Vector<Long> scores = new Vector<Long>();
+    JPanel scoreboard = new ScorePanel(scores); //TODO should this be passed ?
     JPanel info = new InfoPanel();
     GameStatus state = GameStatus.MENU;
     Timer timer = new Timer(game::updateTimeDisplay);
@@ -33,6 +33,7 @@ public class MysteryWindow extends JFrame {
 
     private void startGame() {
         cardLayout.show(cardPanel, "game");
+        game.circuit1.setBackground("assets/circuit1.png");
         state = GameStatus.GAME_PLAYING;
         timer.startTimer();
     }
@@ -40,7 +41,7 @@ public class MysteryWindow extends JFrame {
     private void finishGame() {
         long time = timer.stopTimer();
         game.updateTimeDisplay(0);
-        scores.add((int) time);
+        scores.add(time);
     }
 
     public void spin(){

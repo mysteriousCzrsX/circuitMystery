@@ -9,7 +9,7 @@ import javax.swing.SwingUtilities;
 public class ScorePanel extends JPanel {
     JButton backButton = new JButton("Back");
     JTable scoreArea = new JTable();
-    ScorePanel(Vector<Integer> scores) {
+    ScorePanel(Vector<Long> scores) {
         super();
         add(backButton);
         backButton.addActionListener(e -> {

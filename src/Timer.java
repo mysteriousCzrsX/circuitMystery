@@ -8,7 +8,8 @@ public class Timer {
     private long timeSoFar = 0;
     private LongConsumer updateTimeDisplay;
     private ScheduledExecutorService exec= Executors.newScheduledThreadPool(1);
-    boolean isRunning = false;
+    private boolean isRunning = false;
+    
     Timer(LongConsumer timeOutCallback){
         updateTimeDisplay = timeOutCallback;
         exec.scheduleAtFixedRate(measureTime, 0, 1, TimeUnit.SECONDS);
