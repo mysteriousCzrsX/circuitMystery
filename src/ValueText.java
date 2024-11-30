@@ -29,8 +29,14 @@ public class ValueText extends JPanel{
 
     }
 
-    public String getText(){
-        return valueField.getText();
+    public double getValue(){
+        String userText = valueField.getText();
+        if(userText.matches("-?\\d+(\\.\\d+)?")){
+            return Double.parseDouble(userText);
+        }
+        else{
+            return 0.0;
+        }
     }
 
     public void move(int x, int y){
