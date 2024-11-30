@@ -1,5 +1,7 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import java.awt.CardLayout;
 import java.awt.BorderLayout;
 import java.util.Vector;
@@ -33,7 +35,8 @@ public class MysteryWindow extends JFrame {
 
     private void startGame() {
         cardLayout.show(cardPanel, "game");
-        game.circuit1.setBackground("assets/circuit1.png");
+        //game.circuit1.setBackground();
+        game.circuit1.addCircuitImage();
         state = GameStatus.GAME_PLAYING;
         timer.startTimer();
     }
