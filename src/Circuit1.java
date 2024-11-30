@@ -1,6 +1,6 @@
 import javax.swing.JTextField;
 
-public class Circuit1 extends Ciurcuit {
+public class Circuit1 extends Circuit {
     JTextField value1 = new JTextField();
     public Circuit1() {
         super();
@@ -12,12 +12,6 @@ public class Circuit1 extends Ciurcuit {
         missingResistorIndex = 1;
         randomizeComponentValues();
         setupTextFields();
-        //addTextFields();
-    }
-
-    private void addTextFields(){
-        voltageSourceTexts[0].move(10, 50);
-        add(voltageSourceTexts[0]);
     }
 
     @Override
@@ -25,11 +19,5 @@ public class Circuit1 extends Ciurcuit {
         double result = (voltageSourceValues[0] * resistorValues[0]) / (resistorValues[0] + resistorValues[1]);
         double userInput = Double.parseDouble(resistorTexts[missingResistorIndex].getText());
         return result == userInput;
-    }
-
-    @Override
-    protected void randomizeComponentValues() {
-
-    }
-    
+    } 
 }

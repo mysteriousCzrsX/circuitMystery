@@ -1,7 +1,5 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import java.awt.CardLayout;
 import java.awt.BorderLayout;
 import java.util.Vector;
@@ -35,8 +33,7 @@ public class MysteryWindow extends JFrame {
 
     private void startGame() {
         cardLayout.show(cardPanel, "game");
-        //game.circuit1.setBackground();
-        game.circuit1.addCircuitImage();
+        game.initializeGame();
         state = GameStatus.GAME_PLAYING;
         timer.startTimer();
     }
@@ -57,9 +54,10 @@ public class MysteryWindow extends JFrame {
                     startGame();
                     break;
                 case GAME_PLAYING:
-                    // measure time and idk xd
+                    //do nothing
                     break;
                 case GAME_CHECK:
+                    game.checkIfSolved();
                     //check if solved correctly and if game finished
                     break;
                 case GAME_ABORTED:

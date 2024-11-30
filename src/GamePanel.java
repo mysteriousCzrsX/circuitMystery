@@ -4,6 +4,7 @@ import javax.swing.SwingUtilities;
 import java.awt.Font;
 import java.awt.FlowLayout;
 import java.awt.Color;
+import java.util.Random;
 
 import javax.swing.JTextField;
 
@@ -11,7 +12,8 @@ public class GamePanel extends JPanel {
     JButton endButton = new JButton("End game");
     JButton doneButton = new JButton("Done");
     JTextField timerArea = new JTextField();
-    Circuit1 circuit1 = new Circuit1();
+    Circuit [] circuit = new Circuit[5];
+    int currentCircuit = 0;
     
     GamePanel() {
         super();
@@ -19,13 +21,13 @@ public class GamePanel extends JPanel {
         setLayout(layout);
         add(endButton);
         endButton.addActionListener(e -> {
-            MysteryWindow window = (MysteryWindow) SwingUtilities.getWindowAncestor(GamePanel.this);
-            window.state = GameStatus.GAME_ABORTED;
+            MysteryWindow rootWindow  = (MysteryWindow) SwingUtilities.getWindowAncestor(GamePanel.this);
+            rootWindow.state = GameStatus.GAME_ABORTED;
         });
         add(doneButton);
         doneButton.addActionListener(e -> {
-            MysteryWindow window = (MysteryWindow) SwingUtilities.getWindowAncestor(GamePanel.this);
-            window.state = GameStatus.GAME_CHECK;
+            MysteryWindow rootWindow  = (MysteryWindow) SwingUtilities.getWindowAncestor(GamePanel.this);
+            rootWindow.state = GameStatus.GAME_CHECK;
         });
         timerArea.setBorder(null);
         timerArea.setOpaque(false);
@@ -34,11 +36,60 @@ public class GamePanel extends JPanel {
         timerArea.setText("Time: 00:00");
         timerArea.setEditable(false);
         add(timerArea);
-        add(circuit1);
     }
     public void updateTimeDisplay(long timeNano){
         long minutes = timeNano / 60_000_000_000L;
         long seconds = (timeNano / 1_000_000_000) % 60;
         timerArea.setText(String.format("Time: %02d:%02d", minutes, seconds));
+    }
+
+    public void initializeGame(){
+        currentCircuit = 0;
+        int circuitIndex = 0;
+        Random rand = new Random();
+        for (int i = 0; i < 5; i++){
+            circuitIndex = rand.nextInt(5);
+            //TODO implement other circuits
+            switch(circuitIndex){
+                case 0:
+                    circuit[i] = new Circuit1();
+                    break;
+                case 1:
+                    circuit[i] = new Circuit1();
+                    break;
+                case 2:
+                    circuit[i] = new Circuit1();
+                    break;
+                case 3:
+                    circuit[i] = new Circuit1();
+                    break;
+                case 4:
+                    circuit[i] = new Circuit1();
+                    break;
+            }
+        }
+        add(circuit[currentCircuit]);
+        revalidate();
+        repaint();
+        circuit[currentCircuit].addCircuitImage();
+    }
+
+    public void checkIfSolved(){
+        MysteryWindow rootWindow  = (MysteryWindow) SwingUtilities.getWindowAncestor(GamePanel.this);
+        if(true){
+            remove(circuit[currentCircuit]);
+            currentCircuit++;
+            if(currentCircuit == 5){
+                rootWindow.state = GameStatus.GAME_FINISHED;
+            }
+            else{
+                add(circuit[currentCircuit]);
+                revalidate();
+                repaint();
+                circuit[currentCircuit].addCircuitImage();
+                rootWindow.state = GameStatus.GAME_PLAYING;
+                
+            }
+        }
     }
 }

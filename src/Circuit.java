@@ -1,12 +1,8 @@
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
-abstract class Ciurcuit extends JPanel {
+abstract class Circuit extends JPanel {
     protected String backgroundPath;
    
     private int width = 600;
@@ -22,23 +18,12 @@ abstract class Ciurcuit extends JPanel {
     protected ValueText [] voltageSourceTexts;
     protected int noVoltageSources;
 
-    public Ciurcuit() {
+    public Circuit() {
         super();
         super.setPreferredSize(new Dimension(width, height));
         super.setLayout(new FlowLayout());
     }
 
-    public void setBackground(){
-        BufferedImage background = null;
-        try{
-            background = ImageIO.read(new File(backgroundPath));
-        } 
-        catch (Exception e){
-            System.out.println("Circuit image not found");
-        }
-        Graphics g = getGraphics();
-        g.drawImage(background, 0, 0, width, height - 100, this);
-    }
     public void addCircuitImage(){
         add(circuitBackground);
         circuitBackground.set(backgroundPath);
@@ -65,15 +50,15 @@ abstract class Ciurcuit extends JPanel {
         voltageSourceTexts = new ValueText[noVoltageSources];
         for (int i = 0; i < noResistors; i++){
             if (i == missingResistorIndex){
-                resistorTexts[i] = new ValueText("???", true);
+                resistorTexts[i] = new ValueText("R", i, "???", true);
             }
             else{
-                resistorTexts[i] = new ValueText(String.valueOf(resistorValues[i]), false);
+                resistorTexts[i] = new ValueText("R", i, String.valueOf(resistorValues[i]), false);
             }
             add(resistorTexts[i]);
         }
         for (int i = 0; i < noVoltageSources; i++){
-            voltageSourceTexts[i] = new ValueText(String.valueOf(voltageSourceValues[i]), false);
+            voltageSourceTexts[i] = new ValueText("E", i, String.valueOf(voltageSourceValues[i]), false);
             add(voltageSourceTexts[i]);
         }
     }
