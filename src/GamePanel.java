@@ -79,13 +79,16 @@ public class GamePanel extends JPanel {
         if(circuit[currentCircuit].isSolved()){
             remove(circuit[currentCircuit]);
             currentCircuit++;
+            System.out.println("Circuit solved\n");
             if(currentCircuit == 5){
+                System.out.println("Game finished\n");
                 rootWindow.state = GameStatus.GAME_FINISHED;
                 revalidate();
                 repaint();
                 return;
             }
             else{
+                System.out.println("Next circuit\n");
                 add(circuit[currentCircuit]);
                 revalidate();
                 repaint();

@@ -7,10 +7,12 @@ import java.util.Vector;
 public class MysteryWindow extends JFrame {
     MenuPanel menu = new MenuPanel();
     GamePanel game = new GamePanel();
+    ScorePanel scoreboard = new ScorePanel();
+    FinishScreen finish = new FinishScreen();
     CardLayout cardLayout = new CardLayout();
     JPanel cardPanel = new JPanel(cardLayout);
     Vector<Long> scores = new Vector<Long>();
-    ScorePanel scoreboard = new ScorePanel(); //TODO should this be passed ?
+    
     JPanel info = new InfoPanel();
     GameStatus state = GameStatus.MENU;
     Timer timer = new Timer(game::updateTimeDisplay);
@@ -28,6 +30,7 @@ public class MysteryWindow extends JFrame {
         cardPanel.add(game, "game");
         cardPanel.add(scoreboard, "score");
         cardPanel.add(info, "info");
+        cardPanel.add(finish, "finish");
         add(cardPanel, BorderLayout.CENTER);
     }
 
@@ -43,6 +46,9 @@ public class MysteryWindow extends JFrame {
         game.updateTimeDisplay(0);
         scores.add(time);
         scoreboard.updateScores(scores);
+        finish.writeTime(time);
+        cardLayout.show(cardPanel, "finish");
+        state = GameStatus.GAME_PLAYING;
     }
 
     public void spin(){

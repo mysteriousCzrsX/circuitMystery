@@ -71,14 +71,6 @@ abstract class Circuit extends JPanel {
                 resistorVoltageTexts[i] = new ValueText("V", String.format(suffix, i), "???", true);
                 add(resistorVoltageTexts[i]);
             }
-        }
-
-
-
-
-
-        
-    }
-
-    
+        }   
+    }  
 }

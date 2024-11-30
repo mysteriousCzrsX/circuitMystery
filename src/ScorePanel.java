@@ -17,7 +17,7 @@ public class ScorePanel extends JPanel {
         setAlignmentX(Component.CENTER_ALIGNMENT);
         setLayout(boxLayout);
 
-        add(Box.createRigidArea(new Dimension(0,10)));
+        add(Box.createRigidArea(new Dimension(0,150)));
         title.setMaximumSize(new Dimension(140, 50));
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setBorder(null);
