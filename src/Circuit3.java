@@ -17,14 +17,12 @@ public class Circuit3 extends Circuit {
     @Override
     public boolean isSolved() {
         double R1_R2_series = resistorValues[1] + resistorValues[2];
-        System.out.println("R1_R2_series: " + R1_R2_series);
         double R1_R2_R3_parallel = (R1_R2_series * resistorValues[3]) / (R1_R2_series + resistorValues[3]);
         R1_R2_R3_parallel = Math.round(R1_R2_R3_parallel * 100.0) / 100.0;
-        System.out.println("R1_R2_R3_parallel: " + R1_R2_R3_parallel);
         double result = (voltageSourceValues[0] * R1_R2_R3_parallel) / (R1_R2_R3_parallel + resistorValues[0]);
         result = Math.round(result * 100.0) / 100.0;
         double userInput = resistorVoltageTexts[missingResistorVoltageIndex].getValue();
-        System.out.println("Result: " + result + " User input: " + userInput + '\n');
+        System.out.println("Result: " + result + " User input: " + userInput);
         return result == userInput;
     } 
 }

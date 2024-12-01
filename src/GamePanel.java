@@ -12,7 +12,7 @@ public class GamePanel extends JPanel {
     JButton endButton = new JButton("End game");
     JButton doneButton = new JButton("Done");
     JTextField timerArea = new JTextField();
-    Circuit [] circuit = new Circuit[5];
+    Circuit [] circuit = new Circuit[4];
     int currentCircuit = 0;
     
     GamePanel() {
@@ -47,24 +47,23 @@ public class GamePanel extends JPanel {
         currentCircuit = 0;
         int circuitIndex = 0;
         Random rand = new Random();
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i < 4; i++){
             circuitIndex = rand.nextInt(5);
-            //TODO implement other circuits
             switch(circuitIndex){
                 case 0:
-                    circuit[i] = new Circuit3();
+                    circuit[i] = new Circuit1();
                     break;
                 case 1:
-                    circuit[i] = new Circuit3();
+                    circuit[i] = new Circuit2();
                     break;
                 case 2:
                     circuit[i] = new Circuit3();
                     break;
                 case 3:
-                    circuit[i] = new Circuit3();
+                    circuit[i] = new Circuit4();
                     break;
                 case 4:
-                    circuit[i] = new Circuit3();
+                    circuit[i] = new Circuit5();
                     break;
             }
         }
@@ -77,17 +76,16 @@ public class GamePanel extends JPanel {
     public void checkIfSolved(){
         MysteryWindow rootWindow  = (MysteryWindow) SwingUtilities.getWindowAncestor(GamePanel.this);
         if(circuit[currentCircuit].isSolved()){
-            currentCircuit++;
-            System.out.println("Circuit solved\n");
-            if(currentCircuit == 4){
-                System.out.println("Game finished\n");
+            if(currentCircuit == 3){
+                System.out.println("Game finished");
                 rootWindow.state = GameStatus.GAME_FINISHED;
                 cleanUpGame();
                 return;
             }
             else{
-                remove(circuit[currentCircuit-1]);
-                System.out.println("Next circuit\n");
+                System.out.println("Circuit solved");
+                remove(circuit[currentCircuit]);
+                currentCircuit++;
                 add(circuit[currentCircuit]);
                 revalidate();
                 repaint();
