@@ -72,7 +72,6 @@ public class MysteryWindow extends JFrame {
                     break;
                 case GAME_FINISHED:
                     finishGame();
-                    //show score
                     break;
                 case SCORE:
                     cardLayout.show(cardPanel, "score");

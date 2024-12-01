@@ -38,10 +38,4 @@ public class ValueText extends JPanel{
             return 0.0;
         }
     }
-
-    public void move(int x, int y){
-        int width = getPreferredSize().width;
-        int height = getPreferredSize().height;
-        super.setBounds(x, y, width, height);
-    }
 }

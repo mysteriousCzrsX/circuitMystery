@@ -52,19 +52,19 @@ public class GamePanel extends JPanel {
             //TODO implement other circuits
             switch(circuitIndex){
                 case 0:
-                    circuit[i] = new Circuit1();
+                    circuit[i] = new Circuit3();
                     break;
                 case 1:
-                    circuit[i] = new Circuit1();
+                    circuit[i] = new Circuit3();
                     break;
                 case 2:
-                    circuit[i] = new Circuit1();
+                    circuit[i] = new Circuit3();
                     break;
                 case 3:
-                    circuit[i] = new Circuit1();
+                    circuit[i] = new Circuit3();
                     break;
                 case 4:
-                    circuit[i] = new Circuit1();
+                    circuit[i] = new Circuit3();
                     break;
             }
         }
@@ -79,7 +79,7 @@ public class GamePanel extends JPanel {
         if(circuit[currentCircuit].isSolved()){
             currentCircuit++;
             System.out.println("Circuit solved\n");
-            if(currentCircuit == 5){
+            if(currentCircuit == 4){
                 System.out.println("Game finished\n");
                 rootWindow.state = GameStatus.GAME_FINISHED;
                 cleanUpGame();

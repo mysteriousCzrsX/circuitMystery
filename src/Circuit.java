@@ -40,7 +40,7 @@ abstract class Circuit extends JPanel {
             do{
                 randomValue = (int) (Math.random() * 1000);    
             }while(randomValue == 0);
-            resistorValues[i] = randomValue;
+            resistorValues[i] = (randomValue / 10) * 10;
         }
         for (int i = 0; i < noVoltageSources; i++){
             do{
@@ -68,7 +68,7 @@ abstract class Circuit extends JPanel {
         String suffix = "_R%d"; 
         for(int i = 0; i < noResistors; i++){
             if(i == missingResistorVoltageIndex){
-                resistorVoltageTexts[i] = new ValueText("V", String.format(suffix, i), "???", true);
+                resistorVoltageTexts[i] = new ValueText("V", String.format(suffix, i), "?????", true);
                 add(resistorVoltageTexts[i]);
             }
         }   
