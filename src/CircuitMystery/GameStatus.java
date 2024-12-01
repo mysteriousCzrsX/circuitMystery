@@ -1,3 +1,4 @@
+package CircuitMystery;
 /**
  * Enum class for the game status
  */

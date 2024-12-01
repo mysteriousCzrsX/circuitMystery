@@ -1,3 +1,4 @@
+import CircuitMystery.MysteryWindow;
 /**
  * Main app class that creates game window and starts the game loop.
  */

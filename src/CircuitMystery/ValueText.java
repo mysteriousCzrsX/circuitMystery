@@ -1,3 +1,4 @@
+package CircuitMystery;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.Font;

@@ -1,8 +1,11 @@
+package CircuitMystery;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.CardLayout;
 import java.awt.BorderLayout;
 import java.util.Vector;
+
 
 /**
  * Main window of the game. It various game panels organized in a CardLayout.

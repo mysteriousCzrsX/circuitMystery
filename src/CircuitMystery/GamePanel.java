@@ -1,3 +1,4 @@
+package CircuitMystery;
 import javax.swing.*;
 import java.awt.Font;
 import java.awt.FlowLayout;
@@ -99,6 +100,7 @@ public class GamePanel extends JPanel {
         revalidate();
         repaint();
         circuit[currentCircuit].addCircuitImage();
+        circuit[currentCircuit].isSolved();
     }
 
     /**
@@ -123,6 +125,7 @@ public class GamePanel extends JPanel {
                 revalidate();
                 repaint();
                 circuit[currentCircuit].addCircuitImage();
+                circuit[currentCircuit].isSolved();
             }
         }
         rootWindow.state = GameStatus.GAME_PLAYING;

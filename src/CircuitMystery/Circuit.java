@@ -1,3 +1,4 @@
+package CircuitMystery;
 import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.FlowLayout;

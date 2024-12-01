@@ -1,3 +1,4 @@
+package CircuitMystery;
 import java.util.Collections;
 import java.util.Vector;
 import javax.swing.*;
