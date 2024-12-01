@@ -31,7 +31,6 @@ public class Circuit5 extends Circuit {
         double result = (voltageSourceValues[0] * resistorValues[0]) / (resistorValues[1] + resistorValues[2] + resistorValues[0]);
         result = Math.round(result * 100.0) / 100.0;
         double userInput = resistorVoltageTexts[missingResistorVoltageIndex].getValue();
-        System.out.println("Result: " + result + " User input: " + userInput);
         return result == userInput;
     } 
 }

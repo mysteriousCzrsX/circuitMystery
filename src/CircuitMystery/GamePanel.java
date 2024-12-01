@@ -112,13 +112,11 @@ public class GamePanel extends JPanel {
         MysteryWindow rootWindow  = (MysteryWindow) SwingUtilities.getWindowAncestor(GamePanel.this);
         if(circuit[currentCircuit].isSolved()){
             if(currentCircuit == 3){
-                System.out.println("Game finished");
                 rootWindow.state = GameStatus.GAME_FINISHED;
                 cleanUpGame();
                 return;
             }
             else{
-                System.out.println("Circuit solved");
                 remove(circuit[currentCircuit]);
                 currentCircuit++;
                 add(circuit[currentCircuit]);
