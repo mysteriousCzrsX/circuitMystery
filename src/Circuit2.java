@@ -1,5 +1,13 @@
-
+/**
+ * Circuit2 class is a subclass of Circuit that represents the simple
+ * voltage divider with one resistor changed for two parellel ones.
+ */
 public class Circuit2 extends Circuit {
+    /**
+     * Constructor for the Circuit2 class
+     * it sets the correct background image and the number of resistors and voltage sources
+     * and calls the randomizeComponentValues and setupTextFields methods
+     */
     public Circuit2() {
         super();
         backgroundPath = "assets/circuit2.png";
@@ -14,6 +22,10 @@ public class Circuit2 extends Circuit {
         setupTextFields();
     }
 
+    /**
+     * isSolved method checks if the user input is correct
+     * implementation of an abstract method from the Circuit class
+     */
     @Override
     public boolean isSolved() {
         double R0_R1_parallel = (resistorValues[0] * resistorValues[1]) / (resistorValues[0] + resistorValues[1]);

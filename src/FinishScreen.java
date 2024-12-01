@@ -3,11 +3,24 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 
+/**
+ * FinishScreen
+ * 
+ * This class is a JPanel that displays the finish screen of the game.
+ * It displays a message that the player has finished the game and their time.
+ * It also has a button that allows the player to go back to the main menu.
+ */
 public class FinishScreen extends JPanel{
     private JButton backButton = new JButton("Back");
     private JTextField title = new JTextField("Congratulations you finished the game!");
     private JTextField score = new JTextField();
 
+    /**
+     * Constructor
+     * 
+     * This constructor sets up the layout of the JPanel.
+     * It adds a title, the player's time, and a button to go back to the main menu.
+     */
     public FinishScreen(){
         super();
         
@@ -40,6 +53,13 @@ public class FinishScreen extends JPanel{
         });
     }
 
+    /**
+     * writeTime
+     * 
+     * This method writes the player's time to the screen.
+     * 
+     * @param time The time in nanoseconds that the player took to finish the game.
+     */
     public void writeTime(long time){
         long minutes = time / 60_000_000_000L;
         long seconds = (time / 1_000_000_000) % 60;

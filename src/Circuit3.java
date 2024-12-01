@@ -1,5 +1,13 @@
-
+/**
+ * Circuit3 class is a subclass of Circuit that represents combiantion 
+ * of four series and parallel resistors
+ */
 public class Circuit3 extends Circuit {
+    /**
+     * Constructor for the Circuit3 class
+     * it sets the correct background image and the number of resistors and voltage sources
+     * and calls the randomizeComponentValues and setupTextFields methods
+     */
     public Circuit3() {
         super();
         backgroundPath = "assets/circuit3.png";
@@ -13,7 +21,11 @@ public class Circuit3 extends Circuit {
         randomizeComponentValues();
         setupTextFields();
     }
-
+    
+    /**
+     * isSolved method checks if the user input is correct
+     * implementation of an abstract method from the Circuit class
+     */
     @Override
     public boolean isSolved() {
         double R1_R2_series = resistorValues[1] + resistorValues[2];

@@ -3,12 +3,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
 
+/**
+ * Panel containing the game menu.
+ * It handles switching between diffrent elements of the game
+ * using callbacks assigned to the buttons.
+ */
 public class MenuPanel extends JPanel {
     private JButton startButton = new JButton("Start game");
     private JButton scoreButton = new JButton("Scoreboard");
     private JButton infoButton = new JButton("Game info");
     private JButton quitButton = new JButton("Quit game");
     
+    /**
+     * Constructor for the MenuPanel class.
+     */
     MenuPanel() {
         super();
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);

@@ -5,11 +5,24 @@ import java.awt.Font;
 import java.awt.Component;
 import java.awt.Dimension;
 
+/**
+ * ScorePanel
+ * 
+ * This class is a JPanel that displays the high scores of the game.
+ * It displays the scores in order and has a button to go back to the main menu.
+ */
 
 public class ScorePanel extends JPanel {
     JButton backButton = new JButton("Back");
     JTextField title = new JTextField("High Scores");
     JTextArea scoreArea = new JTextArea();
+
+    /**
+     * Constructor
+     * 
+     * This constructor sets up the layout of the JPanel.
+     * It adds a title, the high scores, and a button to go back to the main menu.
+     */
     ScorePanel() {
         super();
 
@@ -42,7 +55,14 @@ public class ScorePanel extends JPanel {
             window.state = GameStatus.MENU;
         });
     }
-
+    /**
+     * updateScores
+     * 
+     * This method updates the high scores, sorts them
+     * and then displays them on the screen.
+     * 
+     * @param scores Vector containing scores to be displayed
+     */
     public void updateScores(Vector<Long> scores){
         Vector<Long> scoresCopy = new Vector<Long>(scores);
         Collections.sort(scoresCopy);

@@ -1,5 +1,12 @@
-
+/**
+ * Circuit5 class is a subclass of Circuit that represents five resistors in series.
+ */
 public class Circuit5 extends Circuit {
+    /**
+     * Constructor for the Circuit5 class
+     * it sets the correct background image and the number of resistors and voltage sources
+     * and calls the randomizeComponentValues and setupTextFields methods
+     */
     public Circuit5() {
         super();
         backgroundPath = "assets/circuit5.png";
@@ -13,7 +20,11 @@ public class Circuit5 extends Circuit {
         randomizeComponentValues();
         setupTextFields();
     }
-
+    
+    /**
+     * isSolved method checks if the user input is correct
+     * implementation of an abstract method from the Circuit class
+     */
     @Override
     public boolean isSolved() {
         double result = (voltageSourceValues[0] * resistorValues[0]) / (resistorValues[1] + resistorValues[2] + resistorValues[0]);

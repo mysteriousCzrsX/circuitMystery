@@ -1,5 +1,13 @@
-
+/**
+ * Circuit1 class is a subclass of Circuit that represents the simple
+ * voltage divider circuit.
+ */
 public class Circuit1 extends Circuit {
+    /**
+     * Constructor for the Circuit1 class
+     * it sets the correct background image and the number of resistors and voltage sources
+     * and calls the randomizeComponentValues and setupTextFields methods
+     */
     public Circuit1() {
         super();
         backgroundPath = "assets/circuit1.png";
@@ -14,6 +22,10 @@ public class Circuit1 extends Circuit {
         setupTextFields();
     }
 
+    /**
+     * isSolved method checks if the user input is correct
+     * implementation of an abstract method from the Circuit class
+     */
     @Override
     public boolean isSolved() {
         double result = (voltageSourceValues[0] * resistorValues[missingResistorVoltageIndex]) / (resistorValues[0] + resistorValues[1]);

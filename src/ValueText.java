@@ -4,9 +4,26 @@ import java.awt.Font;
 import java.awt.FlowLayout;
 import java.awt.Color;
 
+/**
+ * ValueText class used to display values of components in circuits
+ * 
+ * @param descriptor - the descriptor for the value
+ * @param index - the index of the value
+ * @param value - the value to be displayed
+ * @param editable - a boolean to check if the value is editable
+ */
 public class ValueText extends JPanel{
     private JTextField descriptorField = new JTextField();
     private JTextField valueField = new JTextField();
+
+    /**
+     * Constructor for the ValueText class
+     * 
+     * @param descriptor - the descriptor for the value
+     * @param index - the index of the value
+     * @param value - the value to be displayed
+     * @param editable - a boolean to check if the value is editable
+     */
     public ValueText(String descriptor, String index, String value, Boolean editable){
         super();
         setLayout(new FlowLayout());
@@ -28,7 +45,12 @@ public class ValueText extends JPanel{
         add(valueField);
 
     }
-
+    /**
+     * getValue - gets the value from the valueField
+     * if value is not a number, returns 0.0
+     * 
+     * @return the value from the valueField
+     */
     public double getValue(){
         String userText = valueField.getText();
         if(userText.matches("-?\\d+(\\.\\d+)?")){

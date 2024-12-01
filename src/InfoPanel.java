@@ -3,9 +3,16 @@ import java.awt.Font;
 import java.awt.Component;
 import java.awt.Dimension;
 
+/**
+ * Panel containing infotmation about the game.
+ */
 public class InfoPanel extends JPanel {
     JButton backButton = new JButton("Back");
     JTextArea infoArea = new JTextArea();
+
+    /**
+     * Constructor for the InfoPanel class.
+     */
     InfoPanel() {
         super();
 

@@ -1,20 +1,38 @@
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import java.awt.Font;
 import java.awt.FlowLayout;
 import java.awt.Color;
 import java.util.Random;
 
-import javax.swing.JTextField;
-
+/**
+ * Panel containing the game screen.
+ */
 public class GamePanel extends JPanel {
+
+    /**
+     * Button to end the game.
+     */
     JButton endButton = new JButton("End game");
+    /**
+     * Button to check if current circuit is solved.
+     */
     JButton doneButton = new JButton("Done");
+    /**
+     * Text field displaying the play time.
+     */
     JTextField timerArea = new JTextField();
+    /**
+     * Array of circuits, to be displayed as next levels of the game.
+     */
     Circuit [] circuit = new Circuit[4];
+    /**
+     * Index of the current circuit.
+     */
     int currentCircuit = 0;
     
+    /**
+     * Constructor for the GamePanel class.
+     */
     GamePanel() {
         super();
         FlowLayout layout = new FlowLayout();
@@ -37,12 +55,22 @@ public class GamePanel extends JPanel {
         timerArea.setEditable(false);
         add(timerArea);
     }
+
+    /**
+     * Updates the time display value.
+     * And wirtes it as minutes and seconds to the timerArea.
+     * @param timeNano Time in nanoseconds.
+     */
     public void updateTimeDisplay(long timeNano){
         long minutes = timeNano / 60_000_000_000L;
         long seconds = (timeNano / 1_000_000_000) % 60;
         timerArea.setText(String.format("Time: %02d:%02d", minutes, seconds));
     }
 
+    /**
+     * Initializes the game. 
+     * Creates 4 random circuit types and adds the first one to the panel.
+     */
     public void initializeGame(){
         currentCircuit = 0;
         int circuitIndex = 0;
@@ -73,6 +101,11 @@ public class GamePanel extends JPanel {
         circuit[currentCircuit].addCircuitImage();
     }
 
+    /**
+     * Checks if the current circuit is solved.
+     * If it is, it removes the current circuit and adds the next one.
+     * If the last circuit is solved, the game is finished.
+     */
     public void checkIfSolved(){
         MysteryWindow rootWindow  = (MysteryWindow) SwingUtilities.getWindowAncestor(GamePanel.this);
         if(circuit[currentCircuit].isSolved()){
@@ -95,6 +128,11 @@ public class GamePanel extends JPanel {
         rootWindow.state = GameStatus.GAME_PLAYING;
     }
 
+    /**
+     * Cleans up the game. 
+     * Removes the current circuit and resets the time display.
+     * Called when the game is aborted or finished.
+     */
     public void cleanUpGame(){
         remove(circuit[currentCircuit]);
         currentCircuit = 0;
