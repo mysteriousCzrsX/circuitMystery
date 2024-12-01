@@ -77,17 +77,16 @@ public class GamePanel extends JPanel {
     public void checkIfSolved(){
         MysteryWindow rootWindow  = (MysteryWindow) SwingUtilities.getWindowAncestor(GamePanel.this);
         if(circuit[currentCircuit].isSolved()){
-            remove(circuit[currentCircuit]);
             currentCircuit++;
             System.out.println("Circuit solved\n");
             if(currentCircuit == 5){
                 System.out.println("Game finished\n");
                 rootWindow.state = GameStatus.GAME_FINISHED;
-                revalidate();
-                repaint();
+                cleanUpGame();
                 return;
             }
             else{
+                remove(circuit[currentCircuit-1]);
                 System.out.println("Next circuit\n");
                 add(circuit[currentCircuit]);
                 revalidate();
@@ -96,5 +95,13 @@ public class GamePanel extends JPanel {
             }
         }
         rootWindow.state = GameStatus.GAME_PLAYING;
+    }
+
+    public void cleanUpGame(){
+        remove(circuit[currentCircuit]);
+        currentCircuit = 0;
+        revalidate();
+        repaint();
+        updateTimeDisplay(0);
     }
 }

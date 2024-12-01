@@ -43,7 +43,6 @@ public class MysteryWindow extends JFrame {
 
     private void finishGame() {
         long time = timer.stopTimer();
-        game.updateTimeDisplay(0);
         scores.add(time);
         scoreboard.updateScores(scores);
         finish.writeTime(time);
@@ -68,9 +67,8 @@ public class MysteryWindow extends JFrame {
                     break;
                 case GAME_ABORTED:
                     timer.stopTimer();
-                    game.updateTimeDisplay(0);
+                    game.cleanUpGame();
                     state = GameStatus.MENU;
-                    //cleanup
                     break;
                 case GAME_FINISHED:
                     finishGame();
@@ -82,6 +80,11 @@ public class MysteryWindow extends JFrame {
                 case INFO:
                     cardLayout.show(cardPanel, "info");
                     break;
+            }
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                System.out.println("Thread was interrupted!");
             }
         }
     }
